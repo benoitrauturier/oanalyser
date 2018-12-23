@@ -6,6 +6,9 @@
 \usage{
 mod_get_competition_paramsInput()
 }
+\value{
+
+}
 \description{
 Competition params ui
 }
