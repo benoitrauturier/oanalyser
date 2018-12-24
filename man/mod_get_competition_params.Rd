@@ -7,7 +7,14 @@
 mod_get_competition_params(input, output, session)
 }
 \arguments{
-\item{session}{}
+\item{input}{input dialog between server and ui}
+
+\item{output}{output between serer and ui}
+
+\item{session}{session object passed to server}
+}
+\value{
+nothing
 }
 \description{
 Deals with the values of the comptetion parameters

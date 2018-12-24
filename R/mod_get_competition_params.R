@@ -1,6 +1,6 @@
 #' Competition params ui
 #'
-#' @return
+#' @return a form for inputing competition, course and performance parameters
 #'
 #' @importFrom shinyTime timeInput
 #' @export
@@ -59,11 +59,11 @@ mod_get_competition_paramsInput <- function() {
 #' Competition params server side
 #'
 #' Deals with the values of the comptetion parameters
-#' @param input
-#' @param output
-#' @param session
+#' @param input input dialog between server and ui
+#' @param output output between serer and ui
+#' @param session session object passed to server
 #'
-#' @return
+#' @return nothing
 #' @export
 #'
 #' @examples

@@ -9,4 +9,4 @@ devtools::document('.')
 devtools::load_all('.')
 
 options(app.prod=FALSE) # TRUE = production mode, FALSE = development mode
-shiny::runApp('inst/app')
+shiny::runApp()

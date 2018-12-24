@@ -13,4 +13,6 @@ app_server <- function(input, output,session) {
 
   # data <- callModule(mod_csv_file,"fichier")
   # output$tableau <- DT::renderDT({data()})
+  mod_get_competition_params(input, output, session)
+  mod_get_mistakes(input, output, session)
 }

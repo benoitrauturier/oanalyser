@@ -7,7 +7,7 @@
 mod_get_competition_paramsInput()
 }
 \value{
-
+a form for inputing competition, course and performance parameters
 }
 \description{
 Competition params ui
