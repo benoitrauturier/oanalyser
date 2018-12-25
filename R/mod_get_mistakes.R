@@ -30,7 +30,9 @@ mod_get_mistakesInput <-  function(){
 
   fluidPage(
     fluidRow(uiOutput("intercontrols_radio")),
-    fluidRow(checkboxGroupInput("mitsakes_types", label = h3("Mistakes committed"), choiceNames = mistakes_df$name_en, choiceValues = mistakes_df$.id))
+    fluidRow(column(4,
+                    checkboxGroupInput("mistakes_types", label = h3("Mistakes committed"), choiceNames = mistakes_df$name_en, choiceValues = mistakes_df$.id)),
+             column(4, shinyTime::timeInput("mistake_time_loss", label = "Time lost on that mistake")))
 
     )
 }
