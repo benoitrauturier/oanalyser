@@ -42,8 +42,8 @@ mod_get_mistakesInput <-  function(){
 #' @examples
 mod_get_mistakes <- function(input, output, session, number_of_controls = 20){
 
+    intercontrols <- reactive({get_intercontrols(input$course_control_number)})
     output$intercontrols_radio <- renderUI({
-      intercontrols <- get_intercontrols(input$course_control_number)
-      shinyWidgets::radioGroupButtons("mistake_control", label = h3("Control at which mistake append"), choices = intercontrols)
+      shinyWidgets::radioGroupButtons("mistake_control", label = h3("Control at which mistake append"), choices = intercontrols())
     })
 }
