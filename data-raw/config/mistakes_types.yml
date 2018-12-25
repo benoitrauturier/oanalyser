@@ -1,0 +1,11 @@
+mistakes:
+  COMP:
+      name_en:
+         - "Compass mistake"
+      name_fr:
+         - "Erreur à la boussole"
+  RUN_FAST:
+      name_en:
+        - "Ran too fast"
+      name_fr:
+        - "A courru trop vite"
