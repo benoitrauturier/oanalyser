@@ -27,10 +27,17 @@ get_intercontrols <- function(number_of_controls = 20){
 #'
 #' @examples
 mod_get_mistakesInput <-  function(){
-  fluidRow(uiOutput("intercontrols_radio"))
+
+  fluidPage(
+    fluidRow(uiOutput("intercontrols_radio")),
+    fluidRow(checkboxGroupInput("mitsakes_types", label = h3("Mistakes committed"), choiceNames = mistakes_df$name_en, choiceValues = mistakes_df$.id))
+
+    )
 }
 
-#' Title
+#' Server side function for the get mistake form
+#'
+#' This server function helps adapting the lenght of the intercontrols radio group button
 #'
 #' @param input
 #' @param output

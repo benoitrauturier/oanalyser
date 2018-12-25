@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_get_mistakes.R
 \name{mod_get_mistakes}
 \alias{mod_get_mistakes}
-\title{Title}
+\title{Server side function for the get mistake form}
 \usage{
 mod_get_mistakes(input, output, session, number_of_controls = 20)
 }
@@ -10,5 +10,5 @@ mod_get_mistakes(input, output, session, number_of_controls = 20)
 \item{session}{}
 }
 \description{
-Title
+This server function helps adapting the lenght of the intercontrols radio group button
 }
