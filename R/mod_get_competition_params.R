@@ -45,11 +45,7 @@ mod_get_competition_paramsInput <- function() {
     fluidRow(textAreaInput("performance_summary", label = h3("performance summary"), placeholder = "Summary of your race")),
     fluidRow(column(6,textAreaInput("performance_strong", label = h3("Strong points"), placeholder = "Strong points during your race")),
              column(6,textAreaInput("performance_weak", label = h3("Weak points"), placeholder = "Weak points during your race"))),
-    fluidRow(textAreaInput("performance_next_time", label = h3("Point of attention for next time"), placeholder = "I must be careful about ...")),
-    column(4,
-           actionButton(
-             "validate_competition_params", label = h3("validate")
-           ))
+    fluidRow(textAreaInput("performance_next_time", label = h3("Point of attention for next time"), placeholder = "I must be careful about ..."))
 
   )
 
