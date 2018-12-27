@@ -6,6 +6,9 @@
 \usage{
 get_unvariant_mistake_form()
 }
+\value{
+a list of fluid rows objects
+}
 \description{
-This function returns the unvariant mistake form
+The unvariant mistake form is the type of mistake committed and the tiem lost on that particular mistake
 }

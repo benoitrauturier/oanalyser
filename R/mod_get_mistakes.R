@@ -7,9 +7,11 @@
 #'
 #' @examples
 #' get_intercontrols(20)
-get_intercontrols <- function(number_of_controls = 20){
-  if( !is.numeric(number_of_controls)) stop("The number of controls must be a number")
-  if (number_of_controls == 0) number_of_controls = 1
+get_intercontrols <- function(number_of_controls = 20) {
+  if (!is.numeric(number_of_controls))
+    stop("The number of controls must be a number")
+  if (number_of_controls == 0)
+    number_of_controls = 1
   control_a = c("Start", c(1:number_of_controls))
   control_b = c(c(1:number_of_controls), "Arrival")
 
@@ -18,15 +20,30 @@ get_intercontrols <- function(number_of_controls = 20){
 
 #' This function returns the unvariant mistake form
 #'
-#' @return
+#' The unvariant mistake form is the type of mistake committed and the tiem lost on that particular mistake
+#'
+#'
+#' @return a list of fluid rows objects
 #' @export
 #'
 #' @examples
-get_unvariant_mistake_form <- function(){
-  fluidPage(fluidRow(column(4,
-                  checkboxGroupInput("mistakes_types", label = h3("Mistakes committed"), choiceNames = mistakes_df$name_en, choiceValues = mistakes_df$.id)),
-           column(4, shinyTime::timeInput("mistake_time_loss", label = "Time lost on that mistake"))),
-  fluidRow(actionButton("mistake_submitted", label = "Submit mistake")))
+get_unvariant_mistake_form <- function() {
+  list(fluidRow(
+    column(
+      4,
+      checkboxGroupInput(
+        "mistakes_types",
+        label = h3("Mistakes committed"),
+        choiceNames = mistakes_df$name_en,
+        choiceValues = mistakes_df$.id
+      )
+    ),
+    column(
+      4,
+      shinyTime::timeInput("mistake_time_loss", label = h3("Time lost on that mistake"))
+    )
+  ),
+  fluidRow(actionButton("mistake_submitted", label = h3("Submit mistake"))))
 }
 
 #' Mistakes form
@@ -39,12 +56,8 @@ get_unvariant_mistake_form <- function(){
 #' @export
 #'
 #' @examples
-mod_get_mistakesInput <-  function(){
-
-  fluidPage(
-    fluidRow(uiOutput("mistake_form"))
-
-    )
+mod_get_mistakesInput <-  function() {
+  fluidPage(fluidRow(uiOutput("mistake_form")))
 }
 
 #' Server side function for the get mistake form
@@ -59,25 +72,27 @@ mod_get_mistakesInput <-  function(){
 #' @export
 #'
 #' @examples
-mod_get_mistakes <- function(input, output, session, number_of_controls = 20){
+mod_get_mistakes <-
+  function(input,
+           output,
+           session,
+           number_of_controls = 20) {
+    intercontrols <-
+      reactive({
+        get_intercontrols(input$course_control_number)
+      })
+    observeEvent(input$validate_course_params,
+                 {
+                   output$mistake_form <- renderUI({
+                     c(list(fluidRow(
+                       shinyWidgets::radioGroupButtons(
+                         "mistake_control",
+                         label = h3("Control at which mistake append"),
+                         choices = intercontrols()
+                       )
+                     )),
+                     get_unvariant_mistake_form())
+                   })
 
-
-  intercontrols <-
-    reactive({
-      get_intercontrols(input$course_control_number)
-    })
-  observeEvent(input$validate_course_params,
-               {
-                 output$mistake_form <- renderUI({
-                   fluidPage(fluidRow(
-                     shinyWidgets::radioGroupButtons(
-                       "mistake_control",
-                       label = h3("Control at which mistake append"),
-                       choices = intercontrols()
-                     )
-                   ),
-                   get_unvariant_mistake_form())
                  })
-
-    })
-}
+  }

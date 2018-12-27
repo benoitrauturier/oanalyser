@@ -7,7 +7,7 @@
 #'
 #' @examples
 mod_get_competition_paramsInput <- function() {
-  fluidPage(
+  list(
     fluidRow(h2("Competition Information")),
     fluidRow(
       column(
@@ -117,9 +117,7 @@ mod_get_competition_paramsInput <- function() {
     fluidRow(
       actionButton("validate_course_params", label = h3("Validate course parameters"))
     )
-
-  )
-
+)
 }
 
 
