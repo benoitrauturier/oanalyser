@@ -16,6 +16,19 @@ get_intercontrols <- function(number_of_controls = 20){
   paste(control_a, control_b, sep = " - ")
 }
 
+#' This function returns the unvariant mistake form
+#'
+#' @return
+#' @export
+#'
+#' @examples
+get_unvariant_mistake_form <- function(){
+  fluidPage(fluidRow(column(4,
+                  checkboxGroupInput("mistakes_types", label = h3("Mistakes committed"), choiceNames = mistakes_df$name_en, choiceValues = mistakes_df$.id)),
+           column(4, shinyTime::timeInput("mistake_time_loss", label = "Time lost on that mistake"))),
+  fluidRow(actionButton("mistake_submitted", label = "Submit mistake")))
+}
+
 #' Mistakes form
 #'
 #' This function prepares the mistakes forms depending on the number of mistakes
@@ -29,11 +42,7 @@ get_intercontrols <- function(number_of_controls = 20){
 mod_get_mistakesInput <-  function(){
 
   fluidPage(
-    fluidRow(uiOutput("intercontrols_radio")),
-    fluidRow(column(4,
-                    checkboxGroupInput("mistakes_types", label = h3("Mistakes committed"), choiceNames = mistakes_df$name_en, choiceValues = mistakes_df$.id)),
-             column(4, shinyTime::timeInput("mistake_time_loss", label = "Time lost on that mistake"))),
-    fluidRow(actionButton("mistake_submitted", label = "Submit mistake"))
+    fluidRow(uiOutput("mistake_form"))
 
     )
 }
@@ -52,8 +61,23 @@ mod_get_mistakesInput <-  function(){
 #' @examples
 mod_get_mistakes <- function(input, output, session, number_of_controls = 20){
 
-    intercontrols <- reactive({get_intercontrols(input$course_control_number)})
-    output$intercontrols_radio <- renderUI({
-      shinyWidgets::radioGroupButtons("mistake_control", label = h3("Control at which mistake append"), choices = intercontrols())
+
+  intercontrols <-
+    reactive({
+      get_intercontrols(input$course_control_number)
+    })
+  observeEvent(input$validate_course_params,
+               {
+                 output$mistake_form <- renderUI({
+                   fluidPage(fluidRow(
+                     shinyWidgets::radioGroupButtons(
+                       "mistake_control",
+                       label = h3("Control at which mistake append"),
+                       choices = intercontrols()
+                     )
+                   ),
+                   get_unvariant_mistake_form())
+                 })
+
     })
 }
