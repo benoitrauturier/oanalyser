@@ -123,7 +123,7 @@ mod_get_competition_paramsInput <- function() {
 
 #' Competition params server side
 #'
-#' Deals with the values of the comptetion parameters
+#' Registers the competition parameters each time the validate button is clicked on
 #' @param input input dialog between server and ui
 #' @param output output between serer and ui
 #' @param session session object passed to server
@@ -133,5 +133,23 @@ mod_get_competition_paramsInput <- function() {
 #'
 #' @examples
 mod_get_competition_params <- function(input, output, session) {
-
+   observeEvent(input$validate_course_params, ({
+     competition_params <- list(
+       competition_name = input$competition_name,
+       competition_place = input$competition_place,
+       competition_date = input$course_date,
+       course_name = input$course_name,
+       course_distance = input$course_distance,
+       course_elevation = input$course_elevation,
+       course_control_number = input$course_control_number,
+       course_type = input$course_type,
+       runner_time = input$runner_time,
+       winner_time = input$winner_time,
+       performance_summary = input$performance_summary,
+       performance_strong = input$performance_strong,
+       performance_weak = input$performance_weak,
+       performance_next_time = input$performance_next_time
+     )
+     print(competition_params)
+  }))
 }

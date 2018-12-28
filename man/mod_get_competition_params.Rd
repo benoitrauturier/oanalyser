@@ -17,5 +17,5 @@ mod_get_competition_params(input, output, session)
 nothing
 }
 \description{
-Deals with the values of the comptetion parameters
+Registers the competition parameters each time the validate button is clicked on
 }
