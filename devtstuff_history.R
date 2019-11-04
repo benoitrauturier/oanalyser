@@ -28,7 +28,7 @@ my_desc$set_version("0.0.0.9000")
 # The title of your package
 my_desc$set(Title = "O'Analyser - ")
 # The description of your package
-my_desc$set(Description = "This package contains a full featured application to analyse orienteering races.")
+my_desc$set(Description = "O'analyser is a full featured application to analyse orienteering races.")
 
 # The urls
 #my_desc$set("URL", "https://github.com/ThinkR-open/oanalyser")
@@ -38,10 +38,10 @@ my_desc$write(file = "DESCRIPTION")
 
 # If you want to use the MIT licence, code of conduct, lifecycle badge, and README
 usethis::use_mit_license(name = "Benoit Rauturier")
-usethis::use_readme_rmd()
+#usethis::use_readme_rmd()
 usethis::use_code_of_conduct()
 usethis::use_lifecycle_badge("Experimental")
-usethis::use_news_md()
+#usethis::use_news_md()
 
 # For data
 usethis::use_data_raw()
