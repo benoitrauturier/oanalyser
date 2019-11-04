@@ -4,3 +4,7 @@
 ^devtools_history\.R$
 devtstuff_history.R
 ^devtstuff_history\.R$
+^devstuff_history\.R$
+^LICENSE\.md$
+^README\.Rmd$
+^CODE_OF_CONDUCT\.md$

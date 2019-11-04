@@ -19,27 +19,25 @@ my_desc <- description$new("DESCRIPTION")
 my_desc$set("Package", "oanalyser")
 
 #Set your name
-my_desc$set("Authors@R", "person('Vincent', 'Guyader', email = 'vincent@thinkr.fr', role = c('cre', 'aut'))")
+my_desc$set("Authors@R", "person('Benoit', 'Rauturier', email = 'benoit.rauturier@gmail.com', role = c('cre', 'aut'))")
 
-# Remove some author fields
-my_desc$del("Maintainer")
 
 # Set the version
 my_desc$set_version("0.0.0.9000")
 
 # The title of your package
-my_desc$set(Title = "RStudio Project Templates for Prod-ready Shinyapps")
+my_desc$set(Title = "O'Analyser - ")
 # The description of your package
-my_desc$set(Description = "Create a prod-ready shiny app with this RStudio project template.")
+my_desc$set(Description = "This package contains a full featured application to analyse orienteering races.")
 
 # The urls
-my_desc$set("URL", "https://github.com/ThinkR-open/oanalyser")
-my_desc$set("BugReports", "https://github.com/ThinkR-open/oanalyser/issues")
+#my_desc$set("URL", "https://github.com/ThinkR-open/oanalyser")
+#my_desc$set("BugReports", "https://github.com/ThinkR-open/oanalyser/issues")
 # Save everyting
 my_desc$write(file = "DESCRIPTION")
 
 # If you want to use the MIT licence, code of conduct, lifecycle badge, and README
-usethis::use_mit_license(name = "ThinkR")
+usethis::use_mit_license(name = "Benoit Rauturier")
 usethis::use_readme_rmd()
 usethis::use_code_of_conduct()
 usethis::use_lifecycle_badge("Experimental")
@@ -66,14 +64,14 @@ usethis::use_package("RPostgres")
 usethis::use_tidy_description()
 
 # Vignette
-usethis::use_vignette("oanalyser")
-devtools::build_vignettes()
+#usethis::use_vignette("oanalyser")
+#devtools::build_vignettes()
 
 # Codecov
-usethis::use_travis()
-usethis::use_appveyor()
-usethis::use_coverage()
-
-# Test with rhub
-rhub::check_for_cran()
+#usethis::use_travis()
+# usethis::use_appveyor()
+# usethis::use_coverage()
+#
+# # Test with rhub
+# rhub::check_for_cran()
 

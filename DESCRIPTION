@@ -1,28 +1,34 @@
 Package: oanalyser
-Title: A shiny template
-Version: 0.1.2
-Authors@R: person("Vincent", "Guyader", email = "vincent@thinkr.fr", role = c("aut", "cre"))
-Description: A template for prod-ready Shiny App.
-License: GPL-3
+Title: O'Analyser -
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Benoit",
+           family = "Rauturier",
+           role = c("cre", "aut"),
+           email = "benoit.rauturier@gmail.com")
+Description: O'analyser is a full featured application to
+    analyse orienteering races.
+License: MIT + file LICENSE
 Depends:
     R (>= 3.4.3)
 Imports:
+    DBI,
     DT,
     glue,
     graphics,
+    plyr,
+    RPostgres,
     shiny,
-    stats,
     shinyTime,
     shinyWidgets,
-    yaml,
-    plyr,
-    DBI,
-    RPostgres
+    stats,
+    yaml
 Suggests:
-    testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
+VignetteBuilder: 
+    knitr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
-VignetteBuilder: knitr
