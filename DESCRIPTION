@@ -15,7 +15,9 @@ Imports:
     shinyTime,
     shinyWidgets,
     yaml,
-    plyr
+    plyr,
+    DBI,
+    RPostgres
 Suggests:
     testthat,
     knitr,
