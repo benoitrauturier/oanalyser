@@ -10,5 +10,5 @@ get_unvariant_mistake_form()
 a list of fluid rows objects
 }
 \description{
-The unvariant mistake form is the type of mistake committed and the tiem lost on that particular mistake
+The unvariant mistake form is the type of mistake committed and the time lost on that particular mistake
 }

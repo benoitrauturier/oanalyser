@@ -22,7 +22,7 @@ get_intercontrols <- function(number_of_controls = 20) {
 
 #' This function returns the unvariant mistake form
 #'
-#' The unvariant mistake form is the type of mistake committed and the tiem lost on that particular mistake
+#' The unvariant mistake form is the type of mistake committed and the time lost on that particular mistake
 #'
 #'
 #' @return a list of fluid rows objects
@@ -98,3 +98,23 @@ mod_get_mistakes <-
 
                  })
   }
+
+mod_register_mistake <- function(input,
+                                 output,
+                                 session) {
+  rv <- reactiveValues(mistakes_committed = data.frame())
+
+  observeEvent(input$mistake_submitted, {
+    print(input$mistake_control)
+    print(strftime(input$mistake_time_loss,"%T"))
+    print(paste(input$mistakes_types, collapse = " / "))
+    mistakes_types_binded <- paste(input$mistakes_types, collapse = " / ")
+    mistake_entered <- data.frame(mistake_control = input$mistake_control,
+                                  mistake_time_loss = strftime(input$mistake_time_loss,"%T"),
+                                  mistake_types = mistakes_types_binded)
+
+      rv$mistakes_commited = dplyr::bind_rows(mistake_entered, rv$mistakes_commited)
+
+    print(rv$mistakes_commited)
+    })
+}
