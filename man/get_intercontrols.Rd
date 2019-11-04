@@ -13,7 +13,7 @@ get_intercontrols(number_of_controls = 20)
 the a character vector sarting with 'Start - 1'
 }
 \description{
-Returns intercontrols parameters
+Thus function takes the number of controls and return a character vector for displaying the intercontrols to the user.
 }
 \examples{
 get_intercontrols(20)

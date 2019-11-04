@@ -1,5 +1,7 @@
 #' Returns intercontrols parameters
 #'
+#' Thus function takes the number of controls and return a character vector for displaying the intercontrols to the user.
+#'
 #' @param number_of_controls
 #'
 #' @return the a character vector sarting with 'Start - 1'
@@ -34,8 +36,8 @@ get_unvariant_mistake_form <- function() {
       checkboxGroupInput(
         "mistakes_types",
         label = h3("Mistakes committed"),
-        choiceNames = mistakes_df$name_en,
-        choiceValues = mistakes_df$.id
+        choiceNames = mistakes_df$name,
+        choiceValues = mistakes_df$code
       )
     ),
     column(
