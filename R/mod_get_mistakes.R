@@ -62,6 +62,7 @@ mod_get_mistakesInput <-  function() {
   fluidPage(fluidRow(uiOutput("mistake_form")))
 }
 
+
 #' Server side function for the get mistake form
 #'
 #' This server function helps adapting the lenght of the intercontrols radio group button
@@ -79,6 +80,7 @@ mod_get_mistakes <-
            output,
            session,
            number_of_controls = 20) {
+
     intercontrols <-
       reactive({
         get_intercontrols(input$course_control_number)
@@ -99,22 +101,68 @@ mod_get_mistakes <-
                  })
   }
 
+#' Register mistakes server module
+#'
+#' This module register the mistakes in a reactive value data frame each time the ruse presses the mistake_submitted button. It also prepares the data frame to be displayed to the user and reintialize the form.
+#' TODO : Refacto this functio for single responsability and functionalize the rendering of the mistake form.
+#'
+#' @param input
+#' @param output
+#' @param session
+#'
+#' @return
+#' @export
+#'
+#' @examples
 mod_register_mistake <- function(input,
                                  output,
                                  session) {
   rv <- reactiveValues(mistakes_committed = data.frame())
 
   observeEvent(input$mistake_submitted, {
-    print(input$mistake_control)
-    print(strftime(input$mistake_time_loss,"%T"))
-    print(paste(input$mistakes_types, collapse = " / "))
     mistakes_types_binded <- paste(input$mistakes_types, collapse = " / ")
     mistake_entered <- data.frame(mistake_control = input$mistake_control,
                                   mistake_time_loss = strftime(input$mistake_time_loss,"%T"),
                                   mistake_types = mistakes_types_binded)
 
-      rv$mistakes_commited = dplyr::bind_rows(mistake_entered, rv$mistakes_commited)
+    rv$mistakes_commited = dplyr::bind_rows(mistake_entered, rv$mistakes_commited)
 
+    intercontrols <-
+      reactive({
+        get_intercontrols(input$course_control_number)
+      })
+
+    output$mistake_form <- renderUI({
+      c(list(fluidRow(
+        shinyWidgets::radioGroupButtons(
+          "mistake_control",
+          label = h3("Control at which mistake append"),
+          choices = intercontrols()
+        )
+      )),
+      get_unvariant_mistake_form())
+    })
+
+    output$mistakes_commited <- DT::renderDataTable(rv$mistakes_commited,
+                                                    server = FALSE,
+                                                    selection = "none",
+                                                    options = list(searching = FALSE))
     print(rv$mistakes_commited)
     })
+}
+
+#' Print mistakes committed
+#'
+#' This module prints the mistakes committed by the user dynamically as the user enters them.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' mod_print_mistakes_commited
+#' }
+#'
+mod_print_mistakes_committed <- function(){
+  fluidPage(fluidRow(DT::dataTableOutput("mistakes_commited")))
 }

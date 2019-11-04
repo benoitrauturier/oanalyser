@@ -8,7 +8,8 @@ app_ui <- function() {
              tabPanel("Enter course analyse",
                       fluidPage(
                         mod_get_competition_paramsInput(),
-                        mod_get_mistakesInput())
+                        mod_get_mistakesInput(),
+                        mod_print_mistakes_committed())
              ))
 
 }
