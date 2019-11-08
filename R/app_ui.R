@@ -9,7 +9,8 @@ app_ui <- function() {
                       fluidPage(
                         mod_get_competition_paramsInput(),
                         mod_get_mistakesInput(),
-                        mod_print_mistakes_committed())
+                        mod_print_mistakes_committed(),
+                        mod_push_analyse())
              ))
 
 }

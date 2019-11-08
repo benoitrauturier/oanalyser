@@ -147,7 +147,6 @@ mod_register_mistake <- function(input,
                                                     server = FALSE,
                                                     selection = "none",
                                                     options = list(searching = FALSE))
-    print(rv$mistakes_commited)
     })
 }
 

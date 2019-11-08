@@ -16,4 +16,5 @@ app_server <- function(input, output,session) {
   mod_get_competition_params(input, output, session)
   mod_get_mistakes(input, output, session)
   mod_register_mistake(input, output, session)
+  mod_get_push_button(input, output, session)
 }

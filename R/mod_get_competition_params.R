@@ -150,6 +150,5 @@ mod_get_competition_params <- function(input, output, session) {
        performance_weak = input$performance_weak,
        performance_next_time = input$performance_next_time
      )
-     print(competition_params)
   }))
 }
