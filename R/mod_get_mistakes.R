@@ -33,7 +33,7 @@ get_unvariant_mistake_form <- function() {
   list(fluidRow(
     column(
       4,
-      checkboxGroupInput(
+      radioButtons(
         "mistakes_types",
         label = h3("Mistakes committed"),
         choiceNames = mistakes_df$name,
@@ -125,7 +125,7 @@ mod_register_mistake <- function(input,
                                   mistake_time_loss = strftime(input$mistake_time_loss,"%T"),
                                   mistake_types = mistakes_types_binded)
 
-    rv$mistakes_commited = dplyr::bind_rows(mistake_entered, rv$mistakes_commited)
+    rv$mistakes_commited  <- dplyr::bind_rows(mistake_entered, rv$mistakes_commited)
 
     intercontrols <-
       reactive({
