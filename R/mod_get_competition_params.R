@@ -6,8 +6,10 @@
 #' @export
 #'
 #' @examples
-mod_get_competition_paramsInput <- function() {
-  list(
+mod_get_competition_paramsInput <- function(id) {
+  ns <- NS(id)
+
+  tagList(
     fluidRow(h2("Competition Information")),
     fluidRow(
       column(
@@ -132,23 +134,31 @@ mod_get_competition_paramsInput <- function() {
 #' @export
 #'
 #' @examples
-mod_get_competition_params <- function(input, output, session) {
-   observeEvent(input$validate_course_params, ({
-     competition_params <- list(
-       competition_name = input$competition_name,
-       competition_place = input$competition_place,
-       competition_date = input$course_date,
-       course_name = input$course_name,
-       course_distance = input$course_distance,
-       course_elevation = input$course_elevation,
-       course_control_number = input$course_control_number,
-       course_type = input$course_type,
-       runner_time = input$runner_time,
-       winner_time = input$winner_time,
-       performance_summary = input$performance_summary,
-       performance_strong = input$performance_strong,
-       performance_weak = input$performance_weak,
-       performance_next_time = input$performance_next_time
+mod_get_competition_params <- function(input, output, session, val_comp_param, input_val) {
+
+  comp_params <- eventReactive(val_comp_param(), ({
+
+       competition_params <- list(
+       competition_name = input_val()$competition_name,
+       competition_place = input_val()$competition_place,
+       competition_date = input_val()$course_date,
+       course_name = input_val()$course_name,
+       course_distance = input_val()$course_distance,
+       course_elevation = input_val()$course_elevation,
+       course_control_number = input_val()$course_control_number,
+       course_type = input_val()$course_type,
+       runner_time = input_val()$runner_time,
+       winner_time = input_val()$winner_time,
+       performance_summary = input_val()$performance_summary,
+       performance_strong = input_val()$performance_strong,
+       performance_weak = input_val()$performance_weak,
+       performance_next_time = input_val()$performance_next_time
      )
+
+
+     competition_params = lapply(competition_params, function(x) ifelse(is.null(x), NA, x))
+     return(competition_params)
   }))
+
+  return(comp_params)
 }

@@ -4,7 +4,7 @@
 \alias{mod_get_competition_paramsInput}
 \title{Competition params ui}
 \usage{
-mod_get_competition_paramsInput()
+mod_get_competition_paramsInput(id)
 }
 \value{
 a form for inputing competition, course and performance parameters

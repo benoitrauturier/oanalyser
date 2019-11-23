@@ -4,7 +4,8 @@
 \alias{mod_get_competition_params}
 \title{Competition params server side}
 \usage{
-mod_get_competition_params(input, output, session)
+mod_get_competition_params(input, output, session, val_comp_param,
+  input_val)
 }
 \arguments{
 \item{input}{input dialog between server and ui}
