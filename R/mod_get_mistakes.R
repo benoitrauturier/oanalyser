@@ -85,7 +85,11 @@ mod_get_mistakes <-
       reactive({
         get_intercontrols(input$course_control_number)
       })
-    observeEvent(input$validate_course_params,
+    observeEvent({
+      input$validate_course_params
+      input$mistake_submitted
+      }, ignoreNULL = F,
+      ignoreInit = T,
                  {
                    output$mistake_form <- renderUI({
                      c(list(fluidRow(
@@ -126,22 +130,6 @@ mod_register_mistake <- function(input,
                                   mistake_types = mistakes_types_binded)
 
     rv$mistakes_commited  <- dplyr::bind_rows(mistake_entered, rv$mistakes_commited)
-
-    intercontrols <-
-      reactive({
-        get_intercontrols(input$course_control_number)
-      })
-
-    output$mistake_form <- renderUI({
-      c(list(fluidRow(
-        shinyWidgets::radioGroupButtons(
-          "mistake_control",
-          label = h3("Control at which mistake append"),
-          choices = intercontrols()
-        )
-      )),
-      get_unvariant_mistake_form())
-    })
 
     output$mistakes_commited <- DT::renderDataTable(rv$mistakes_commited,
                                                     server = FALSE,
