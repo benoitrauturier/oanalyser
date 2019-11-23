@@ -33,7 +33,7 @@ mod_push_to_db <- function(input,
 
 
   observeEvent(is_pushed(),{
-    #browser()
+    browser()
     df_race <- data.frame(name = comp_in$competition_name,
                           place = comp_in$competition_place,
                           map = NA,
@@ -50,8 +50,7 @@ mod_push_to_db <- function(input,
                              distance = comp_in$course_distance,
                              elevation = comp_in$course_elevation)
 
-
-    print(df_results)
+    df_mistake <- mistakes$mistakes_commited
 
 
   })

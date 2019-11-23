@@ -126,10 +126,9 @@ mod_register_mistake <- function(input,
   rv <- reactiveValues(mistakes_commited = data.frame())
 
   observeEvent(mistake_submitted(), {
-    mistakes_types_binded <- paste(input_val()$mistakes_types, collapse = " / ")
-    mistake_entered <- data.frame(mistake_control = input_val()$mistake_control,
-                                  mistake_time_loss = strftime(input_val()$mistake_time_loss,"%T"),
-                                  mistake_types = mistakes_types_binded)
+    mistake_entered <- data.frame(control = input_val()$mistake_control,
+                                  time_lost = strftime(input_val()$mistake_time_loss,"%T"),
+                                  mistake_type_id = input_val()$mistakes_types)
 
     rv$mistakes_commited  <- dplyr::bind_rows(mistake_entered, rv$mistakes_commited)
 
