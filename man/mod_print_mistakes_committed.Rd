@@ -4,7 +4,7 @@
 \alias{mod_print_mistakes_committed}
 \title{Print mistakes committed}
 \usage{
-mod_print_mistakes_committed()
+mod_print_mistakes_committed(id)
 }
 \description{
 This module prints the mistakes committed by the user dynamically as the user enters them.

@@ -120,22 +120,23 @@ mod_get_mistakes <-
 #' @examples
 mod_register_mistake <- function(input,
                                  output,
-                                 session) {
-  rv <- reactiveValues(mistakes_committed = data.frame())
+                                 session,
+                                 mistake_submitted,
+                                 input_val) {
+  rv <- reactiveValues(mistakes_commited = data.frame())
 
-  observeEvent(input$mistake_submitted, {
-    mistakes_types_binded <- paste(input$mistakes_types, collapse = " / ")
-    mistake_entered <- data.frame(mistake_control = input$mistake_control,
-                                  mistake_time_loss = strftime(input$mistake_time_loss,"%T"),
+  observeEvent(mistake_submitted(), {
+    mistakes_types_binded <- paste(input_val()$mistakes_types, collapse = " / ")
+    mistake_entered <- data.frame(mistake_control = input_val()$mistake_control,
+                                  mistake_time_loss = strftime(input_val()$mistake_time_loss,"%T"),
                                   mistake_types = mistakes_types_binded)
 
     rv$mistakes_commited  <- dplyr::bind_rows(mistake_entered, rv$mistakes_commited)
 
-    output$mistakes_commited <- DT::renderDataTable(rv$mistakes_commited,
-                                                    server = FALSE,
-                                                    selection = "none",
-                                                    options = list(searching = FALSE))
+
     })
+
+  return(rv)
 }
 
 #' Print mistakes committed
@@ -150,6 +151,20 @@ mod_register_mistake <- function(input,
 #' mod_print_mistakes_commited
 #' }
 #'
-mod_print_mistakes_committed <- function(){
-  fluidPage(fluidRow(DT::dataTableOutput("mistakes_commited")))
+mod_print_mistakes_committed <- function(id){
+  ns <- NS(id)
+
+  fluidPage(fluidRow(DT::dataTableOutput(ns("mistakes_commited"))))
+}
+
+mod_render_dt_mistakes <- function(input,
+                                   output,
+                                   session,
+                                   mistakes){
+
+  output$mistakes_commited <- DT::renderDataTable(mistakes$mistakes_commited,
+                                                  server = FALSE,
+                                                  selection = "none",
+                                                  options = list(searching = FALSE))
+
 }

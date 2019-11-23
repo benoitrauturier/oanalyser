@@ -4,7 +4,7 @@
 \alias{mod_register_mistake}
 \title{Register mistakes server module}
 \usage{
-mod_register_mistake(input, output, session)
+mod_register_mistake(input, output, session, mistake_submitted, input_val)
 }
 \arguments{
 \item{session}{}

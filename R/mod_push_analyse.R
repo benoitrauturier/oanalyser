@@ -27,7 +27,8 @@ mod_push_to_db <- function(input,
                            output,
                            session,
                            is_pushed,
-                           comp_in){
+                           comp_in,
+                           mistakes){
 
 
 
